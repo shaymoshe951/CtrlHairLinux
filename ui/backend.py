@@ -476,7 +476,9 @@ if __name__ == '__main__':
     be = Backend(2.5, blending=True)
     from util.imutil import read_rgb, write_rgb
 
-    input_image = read_rgb('/workspace/CtrlHair/imgs/output_split_imgs/fc_Shay0_re_rp0_part1.jpg')
+    # input_image = read_rgb('/workspace/CtrlHair/imgs/output_split_imgs/fc_Shay0_re_rp0_part1.jpg')
+    input_image = read_rgb('/workspace/CtrlHair/imgs/output_split_imgs/fc_Shay1_re_rp1_part1.jpg')
+    input_image = read_rgb('/workspace/CtrlHair/imgs/output_split_imgs/fc_Shay1_re_rp6_part1.jpg')
     # input_image = read_rgb('/workspace/CtrlHair/imgs/CelebaMask_HQ___00644.png')
     # target_image = read_rgb('imgs/00001.png')
 

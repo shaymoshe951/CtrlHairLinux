@@ -10,6 +10,9 @@
 """
 
 import sys
+
+import PIL
+
 sys.path.append('.')
 sys.path.append('..\\')
 
@@ -28,6 +31,9 @@ from wrap_codes.mask_adaptor import wrap_by_imgs
 from hair_editor import HairEditor
 from util.color_from_hsv_to_gaussian import DistTranslation
 
+import matplotlib.pyplot as plt
+import numpy as np
+import colorsys
 
 class LatentRepresentation:
     def __init__(self):
@@ -470,8 +476,8 @@ if __name__ == '__main__':
     be = Backend(2.5, blending=True)
     from util.imutil import read_rgb, write_rgb
 
-    # input_image = read_rgb('/workspace/CtrlHair/imgs/output_split_imgs/fc_Shay0_rp2_part1.jpg')
-    input_image = read_rgb('/workspace/CtrlHair/imgs/CelebaMask_HQ___00541.png')
+    input_image = read_rgb('/workspace/CtrlHair/imgs/output_split_imgs/fc_Shay0_re_rp0_part1.jpg')
+    # input_image = read_rgb('/workspace/CtrlHair/imgs/CelebaMask_HQ___00644.png')
     # target_image = read_rgb('imgs/00001.png')
 
     """
@@ -490,12 +496,23 @@ if __name__ == '__main__':
     # be.transfer_latent_representation('color')
     # be.transfer_latent_representation('shape')
 
-    # change the variance manually
-    # be.change_color(1.0, 2)
+    # # change the variance manually
+    # new_rgb_color = (0.5,0.5,0.5)
+    # new_hsv = colorsys.rgb_to_hsv(*new_rgb_color)
+    # new_hsv = (new_hsv[0],new_hsv[1],new_hsv[2], 0)
+    # for idx in range(len(new_hsv)):
+    #     be.change_color(new_hsv[idx], idx)
 
     out_mask = be.get_mask(input_image)
     output_img = be.output()
-    write_rgb('temp.png', output_img)
+    output_image = PIL.Image.fromarray(output_img)
+    output_image.resize((512,512), PIL.Image.Resampling.LANCZOS)
+    output_image.save('new_temp.png')
+    output_img = np.array(output_image)
+    # write_rgb('temp.png', output_img)
+    plt.imshow(output_img)
+    plt.axis('off')
+    plt.show()
     # above is the output image
 
     # im2 = read_rgb('imgs/00037.png')
@@ -504,3 +521,22 @@ if __name__ == '__main__':
     # be.transfer_latent_representation('shape')
     # output_img2 = be.output()
     # above is the output image 2
+
+
+    # Define your RGB color (values between 0 and 1)
+    if False:
+        hsv_color = be.get_color_be2fe()
+        hsv_color = hsv_color[:3]
+        rgb_color = colorsys.hsv_to_rgb(*hsv_color)
+        # rgb_color = [0.2, 0.6, 0.9]  # light blue
+
+        # Create an image (1x1 pixel repeated to 100x100)
+        img = np.ones((100, 100, 3)) * rgb_color
+
+        # Show the color
+        plt.imshow(img)
+        plt.axis('off')
+        plt.title(f"RGB: {rgb_color}")
+        plt.show()
+
+    print("Here")

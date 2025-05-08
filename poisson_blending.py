@@ -79,6 +79,8 @@ def poisson_blending(source, target, mask, with_gamma=True):
         x = x.reshape((y_range, x_range))
         res[:, :, channel] = x
 
+    res = np.clip(res, 0, None)
+
     res = np.power(res, gamma_value)
 
     res[res > 255] = 255

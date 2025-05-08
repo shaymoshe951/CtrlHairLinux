@@ -83,7 +83,7 @@ def check_add_default_value_to_base_cfg(cfg):
     add_default_value_to_cfg(cfg, 'init_type', 'normal')
     add_default_value_to_cfg(cfg, 'G_D_train_num', {'G': 1, 'D': 1}, )
 
-    output_root_dir = 'model_trained/color_texture/%s' % cfg['experiment_name']
+    output_root_dir = '/workspace/CtrlHair/model_trained/color_texture/%s' % cfg['experiment_name']
     add_default_value_to_cfg(cfg, 'root_dir', output_root_dir)
     add_default_value_to_cfg(cfg, 'log_dir', output_root_dir + '/logs')
     add_default_value_to_cfg(cfg, 'model_save_dir', output_root_dir + '/models')

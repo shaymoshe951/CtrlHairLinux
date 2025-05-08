@@ -15,8 +15,8 @@ import tqdm
 import cv2
 
 detector = dlib.get_frontal_face_detector()
-predictor_dict = {68: dlib.shape_predictor('external_model_params/shape_predictor_68_face_landmarks.dat'),
-                  81: dlib.shape_predictor('external_model_params/shape_predictor_81_face_landmarks.dat')}
+predictor_dict = {68: dlib.shape_predictor('/workspace/CtrlHair/external_model_params/shape_predictor_68_face_landmarks.dat'),
+                  81: dlib.shape_predictor('/workspace/CtrlHair/external_model_params/shape_predictor_81_face_landmarks.dat')}
 
 
 def detect_landmarks(root_dir, dataset_name, landmark_output_file_path, output_dir=None, predictor=None):

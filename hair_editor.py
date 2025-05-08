@@ -60,7 +60,7 @@ class HairEditor:
             # self.feature_curliness_predictor = self.solver_feature.curliness_model
 
             # ckpt_dir = 'external_model_params/disentangle_checkpoints/' + cfg_app.experiment_name + '/checkpoints'
-            ckpt_dir = 'model_trained/color_texture/' + cfg_feature.experiment_name + '/checkpoints'
+            ckpt_dir = '/workspace/CtrlHair/model_trained/color_texture/' + cfg_feature.experiment_name + '/checkpoints'
             ckpt = my_torchlib.load_checkpoint(ckpt_dir)
             for model_name in ['Model_G', 'Model_D']:
                 cur_model = ckpt[model_name]
@@ -79,7 +79,7 @@ class HairEditor:
                 self.feature_rgb_predictor.load_state_dict(ckpt['Predictor'], strict=True)
 
             # load unsupervised direction
-            existing_dirs_dir = os.path.join('model_trained/color_texture', cfg_feature.experiment_name,
+            existing_dirs_dir = os.path.join('/workspace/CtrlHair/model_trained/color_texture', cfg_feature.experiment_name,
                                              'texture_dir_used')
             if os.path.exists(existing_dirs_dir):
                 existing_dirs_list = os.listdir(existing_dirs_dir)
@@ -98,7 +98,7 @@ class HairEditor:
             ##############################################
             #  change to your checkpoints dir            #
             ##############################################
-            ckpt_dir = 'model_trained/shape/' + cfg_mask.experiment_name + '/checkpoints'
+            ckpt_dir = '/workspace/CtrlHair/model_trained/shape/' + cfg_mask.experiment_name + '/checkpoints'
             ckpt = my_torchlib.load_checkpoint(ckpt_dir)
             for model_name in ['Model_G', 'Model_D']:
                 cur_model = ckpt[model_name]
@@ -108,7 +108,7 @@ class HairEditor:
             self.mask_generator.load_state_dict(ckpt['Model_G'], strict=True)
 
             # load unsupervised direction
-            existing_dirs_dir = os.path.join('model_trained/shape', cfg_mask.experiment_name, 'shape_dir_used')
+            existing_dirs_dir = os.path.join('/workspace/CtrlHair/model_trained/shape', cfg_mask.experiment_name, 'shape_dir_used')
             if os.path.exists(existing_dirs_dir):
                 existing_dirs_list = os.listdir(existing_dirs_dir)
                 existing_dirs_list.sort()
@@ -131,7 +131,7 @@ class HairEditor:
     def load_average_feature():
         ############### load average features
         # average_style_code_folder = 'styles_test/mean_style_code/mean/'
-        average_style_code_folder = 'sean_codes/styles_test/mean_style_code/median/'
+        average_style_code_folder = '/workspace/CtrlHair/sean_codes/styles_test/mean_style_code/median/'
         input_style_dic = {}
 
         ############### hard coding for categories

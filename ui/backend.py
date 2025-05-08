@@ -11,6 +11,7 @@
 
 import sys
 sys.path.append('.')
+sys.path.append('..\\')
 
 import copy
 import os
@@ -466,11 +467,12 @@ class Backend(HairEditor):
 This is a example of using Backend for costume editing
 """
 if __name__ == '__main__':
-    be = Backend(2.5)
+    be = Backend(2.5, blending=True)
     from util.imutil import read_rgb, write_rgb
 
-    input_image = read_rgb('imgs/00079.png')
-    target_image = read_rgb('imgs/00001.png')
+    # input_image = read_rgb('/workspace/CtrlHair/imgs/output_split_imgs/fc_Shay0_rp2_part1.jpg')
+    input_image = read_rgb('/workspace/CtrlHair/imgs/CelebaMask_HQ___00541.png')
+    # target_image = read_rgb('imgs/00001.png')
 
     """
     If the image need crop
@@ -481,24 +483,24 @@ if __name__ == '__main__':
     input_image = cv2.resize(input_image, (256, 256))
 
     be.set_input_img(input_image)
-    be.set_target_img(target_image)
+    # be.set_target_img(target_image)
 
-    # transfer all latent code from target image to input image
-    be.transfer_latent_representation('texture')
-    be.transfer_latent_representation('color')
-    be.transfer_latent_representation('shape')
+    # # transfer all latent code from target image to input image
+    # be.transfer_latent_representation('texture')
+    # be.transfer_latent_representation('color')
+    # be.transfer_latent_representation('shape')
 
     # change the variance manually
-    be.change_color(1.0, 2)
+    # be.change_color(1.0, 2)
 
     out_mask = be.get_mask(input_image)
     output_img = be.output()
     write_rgb('temp.png', output_img)
     # above is the output image
 
-    im2 = read_rgb('imgs/00037.png')
-    im2 = cv2.resize(im2, (256, 256))
-    be.set_target_img(im2)
-    be.transfer_latent_representation('shape')
-    output_img2 = be.output()
+    # im2 = read_rgb('imgs/00037.png')
+    # im2 = cv2.resize(im2, (256, 256))
+    # be.set_target_img(im2)
+    # be.transfer_latent_representation('shape')
+    # output_img2 = be.output()
     # above is the output image 2

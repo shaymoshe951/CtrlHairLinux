@@ -29,7 +29,7 @@ configs = [
     }),
     addict.Dict({
         "experiment_name": "p004___pca_std",
-        'basic_dir': 'model_trained/color_encoder',
+        'basic_dir': '/workspace/CtrlHair/model_trained/color_encoder',
         'filter_female_and_frontal': True,
         'hidden_layer_num': 3,
         'hidden_dim': 256,

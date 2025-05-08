@@ -27,7 +27,7 @@ from util.find_semantic_direction import get_random_direction
 df = DataFilter(cfg)
 be = Backend(2.5, blending=False)
 
-exist_direction = 'model_trained/shape/%s' % cfg.experiment_name
+exist_direction = '/workspace/CtrlHair/model_trained/shape/%s' % cfg.experiment_name
 code_dim = cfg.hair_dim
 att_name = 'shape'
 interpolate_num = 6
